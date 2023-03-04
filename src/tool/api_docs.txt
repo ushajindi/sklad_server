@@ -1,0 +1,110 @@
+Tools module "project_server/src/tool" this module store information about tools
+   GET "your_url/tool/tools" such url return all tools
+    server responds: 
+    [
+      {
+        "id": string,
+        "title": string,
+        "date": {
+            "DMY": staring,
+            "time": string
+        },
+        "attr": {
+            "serial_number": number,
+            "diameter": number
+        },
+        "employee_name": staring,
+        "extradited": boolean
+    }]
+    
+   GET "your_url/tool/returned-tools" this url returns all tools, which were returned and their extradition date is today
+     server responds: 
+    [
+      {
+        "id": string,
+        "title": string,
+        "date": {
+            "DMY": staring,
+            "time": string
+        },
+        "attr": {
+            "serial_number": number,
+            "diameter": number
+        },
+        "employee_name": staring,
+        "extradited": false
+    }]
+
+   GET "your_url/tool/not-returned-tools" this url returns all tools, which were not returned
+     server responds:
+    [
+      {
+        "id": string,
+        "title": string,
+        "date": {
+            "DMY": staring,
+            "time": string
+        },
+        "attr": {
+            "serial_number": number,
+            "diameter": number
+        },
+        "employee_name": staring,
+        "extradited": true
+    }]
+
+   GET "your_url/tool/:id" this url returns tool with id = :id
+   request to server
+   id: string
+   your_url/tool/{tool.id}
+
+   for example: your_url/tool/3
+
+   POST "your_url/tool/insert-tool" this url accepts tool type to save it in database and returns status
+    request to server:
+    {
+        id: string;
+        title: string;
+        date: {
+            DMY: string;
+            time: string;
+        };
+        attr?: {
+            serial_number?: number;
+            diameter?: number;
+        };
+        employee_name: string;
+        extradited: boolean;
+    }
+    server responds:
+     {
+        "error": boolean,
+        "status": number,
+        "message": string
+     }
+
+    PUT "your_url/tool/:id" this url accepts tool id and tool extradited to update it in database and returns status
+    request to server:
+    id: string
+    your_url/tool/{tool.id}
+    AND
+    extradited: boolean
+
+    server responds:
+     {
+        "error": boolean,
+        "status": number,
+        "message": string
+     }
+
+    DELETE "your_url/tool/:id" this url accepts tool id to remove it from database and returns status
+    request to server:
+    id: string
+    your_url/tool/{tool.id}
+
+    server responds:
+     {
+        "error": boolean,
+        "status": number,
+        "message": string
+     }
